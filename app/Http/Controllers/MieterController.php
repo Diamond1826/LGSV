@@ -11,10 +11,14 @@ use App\WohnungenMieter;
 * @author D. Schaufelberger
 * @since July, 2017
 * @version 1.0
-* this class includ all student and classes methods
+* this class includes all Mieter methods
 */
 class MieterController extends Controller
 {   
+    /**
+    *this method create a new Mieter and save this to Database
+    *@var $request
+    */
     public function createMieter(Request $request)
     {
         $mieter = new Mieter;
@@ -30,12 +34,12 @@ class MieterController extends Controller
 
         return redirect()->action('PageController@mieter');
     }
-
+    /**
+    *this method returns the selected Mieter Data
+    *@var $mieterID
+    */
     public function selectedMieter($mieterID)
     {
-        /*$mieters = DB::select("SELECT * 
-                                FROM mieters 
-                                WHERE mieterID = $mieterID");*/
         $mieters = Mieter::WHERE('mieterID', $mieterID)->get();
         $selectedMieter;
 
@@ -45,7 +49,10 @@ class MieterController extends Controller
 
         return view('pages.editMieter', ['selectedMieter' => $selectedMieter]);
     } 
-
+    /**
+    *this method update the selected Mieter Data
+    *@var $request
+    */
     public function updateMieter(Request $request)
     {
         $mieterID = $request -> input('mieterID');
@@ -68,7 +75,10 @@ class MieterController extends Controller
                                                 
         return redirect()->action('PageController@mieter');
     }
-
+    /**
+    *this method delete the selected Mieter from Database
+    *@var $mieterID
+    */
     public function deleteMieter($mieterID)
     {
         Mieter::WHERE('mieterID', $mieterID)->delete();

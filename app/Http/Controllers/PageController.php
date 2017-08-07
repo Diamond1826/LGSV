@@ -10,10 +10,7 @@ class PageController extends Controller
     {
         return view('pages.index');
     }
-    /**
-    * this method returns the contact view
-    * @return contact.blade.php
-    */
+
     public function contact()
     {
         return view('pages.contact');
@@ -49,18 +46,11 @@ class PageController extends Controller
         return view('pages.addWohnung', ['liegenschaftID' => $liegenschaftID]);
     }
 
-    /**
-    * this method returns the login view
-    * @return login.blade.php
-    */
     public function login() 
     {
         return view('auth.login');
     }
-    /**
-    * this method returns the register view
-    * @return register.blade.php
-    */
+    
     public function registry() 
     {
         return view('auth.register');

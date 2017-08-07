@@ -12,10 +12,14 @@ use App\WohnungMieter;
 * @author D. Schaufelberger
 * @since July, 2017
 * @version 1.0
-* this class includ all student and classes methods
+* this class includes all Liegenschaft methods
 */
 class LiegenschaftController extends Controller
 {   
+    /**
+    *this method create a new Liegenschaft and save this to Database
+    *@var $request
+    */
     public function createLiegenschaft(Request $request)
     {
         $liegenschaft = new Liegenschaft;
@@ -28,7 +32,10 @@ class LiegenschaftController extends Controller
 
         return redirect()->action('PageController@liegenschaft');
     }
-
+    /**
+    *this returns the selected Liegenschaft Data
+    *@var $liegenschaftID
+    */
     public function selectedLiegenschaft($liegenschaftID)
     {
         $liegenschafts = Liegenschaft::WHERE('liegenschaftID', $liegenschaftID)->get();
@@ -40,7 +47,10 @@ class LiegenschaftController extends Controller
 
         return view('pages.editliegenschaft', ['selectedLiegenschaft' => $selectedLiegenschaft]);
     } 
-
+    /**
+    *this method update the selected Liegenschaft data on database
+    *@var $request
+    */
     public function updateLiegenschaft(Request $request)
     {
         $liegenschaftID = $request -> input('liegenschaftID');
@@ -57,7 +67,10 @@ class LiegenschaftController extends Controller
                                                 
         return redirect()->action('PageController@liegenschaft');
     }
-
+    /**
+    *this method delete the selected Liegenschaft from Database
+    *@var $liegenschaftID
+    */
     public function deleteLiegenschaft($liegenschaftID)
     {
         Liegenschaft::WHERE('liegenschaftID', $liegenschaftID)->delete();
