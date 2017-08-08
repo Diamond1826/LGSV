@@ -45,7 +45,8 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Liegenschaft: {{ $liegenschaft->strasse }}</h4>
                     Anzahl Wohnungen: {{ \App\Wohnung::WHERE('liegenschaftID', $liegenschaft->liegenschaftID)->count() }}<br>
-                    Gesamte Mieteinnahmen: {{ \App\Wohnung::WHERE('liegenschaftID', $liegenschaft->liegenschaftID)->sum('miete') }} CHF
+                    Höchstmögliche Mieteinnahmen: {{ \App\Wohnung::WHERE('liegenschaftID', $liegenschaft->liegenschaftID)->sum('miete') }} CHF<br>
+                    Aktuelle Mieteinnahmen: {{ \App\Http\Controllers\LiegenschaftController::realeMieteinnahmen($liegenschaft->liegenschaftID) }} CHF
             </div>
             <div class="modal-body">
                 <a class="btn btn-default btn-block" href="/addWohnung/{{ $liegenschaft->liegenschaftID }}">Wohnung erfassen</a>

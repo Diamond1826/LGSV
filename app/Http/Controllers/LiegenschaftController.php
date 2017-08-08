@@ -85,4 +85,19 @@ class LiegenschaftController extends Controller
 
         return redirect()->action('PageController@liegenschaft');
     }
+
+    public static function realeMieteinnahmen($liegenschaftID)
+    {
+        $einnahmen = DB::select('SELECT SUM(miete) AS cash FROM wohnungen, wohnungenmieter WHERE wohnungen.liegenschaftID = ? AND wohnungenmieter.wohnungsID = wohnungen.wohnungsID', [$liegenschaftID]);
+
+        $cash;
+        foreach($einnahmen as $einnahme)
+        {
+            $cash = $einnahme->cash;
+        }
+
+        
+
+        return $cash;
+    }
 }
